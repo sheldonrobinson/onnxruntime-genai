@@ -60,10 +60,10 @@ if(MSVC)
   endif()
 
   # Enable Spectre mitigations for C and C++ compilations only (avoid CUDA nvcc that is not supported there)
-  add_compile_options(
-    "$<$<COMPILE_LANGUAGE:C>:/Qspectre>"
-    "$<$<COMPILE_LANGUAGE:CXX>:/Qspectre>"
-  )
+  # add_compile_options(
+    # "$<$<COMPILE_LANGUAGE:C>:/Qspectre>"
+    # "$<$<COMPILE_LANGUAGE:CXX>:/Qspectre>"
+  # )
 
   # Use updated value for __cplusplus macro (e.g. 201703L for C++17) instead of default 199711L
   # Required by some libraries/tools that check __cplusplus for feature support
