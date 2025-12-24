@@ -23,13 +23,14 @@ target_link_libraries(
     GTest::gtest
 	argparse::argparse
 	nlohmann::json
+	httplib::httplib
 )
 
 add_executable(slm-runner slm_runner.cpp)
-target_link_libraries(slm-runner slmengine ort-genai ort argparse::argparse nlohmann::json)
+target_link_libraries(slm-runner slmengine ort-genai ort httplib::httplib argparse::argparse nlohmann::json)
 
 add_executable(slm-server slm_server.cpp)
-target_link_libraries(slm-server slmengine ort-genai ort argparse::argparse nlohmann::json)
+target_link_libraries(slm-server slmengine ort-genai ort httplib::httplib argparse::argparse nlohmann::json)
     
 install(DIRECTORY ${ARTIFACTS}/${SYS_TARGET_ID}/include
     DESTINATION .
