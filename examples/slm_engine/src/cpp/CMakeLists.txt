@@ -6,10 +6,10 @@ add_library(
     input_decoder.cpp
 )
 
-target_link_libraries(slmengine ort-genai ort)
+target_link_libraries(slmengine ort-genai ort nlohmann::json)
 
 add_executable(input_decoder-test input_decoder.cpp input_decoder_test.cpp)
-target_link_libraries(input_decoder-test GTest::gtest)
+target_link_libraries(input_decoder-test GTest::gtest nlohmann::json)
 
 add_executable(
     unit-test 
