@@ -21,13 +21,15 @@ target_link_libraries(
     unit-test  
     slmengine 
     GTest::gtest
+	argparse::argparse
+	nlohmann::json
 )
 
 add_executable(slm-runner slm_runner.cpp)
-target_link_libraries(slm-runner slmengine ort-genai ort)
+target_link_libraries(slm-runner slmengine ort-genai ort argparse::argparse nlohmann::json)
 
 add_executable(slm-server slm_server.cpp)
-target_link_libraries(slm-server slmengine ort-genai ort)
+target_link_libraries(slm-server slmengine ort-genai ort argparse::argparse nlohmann::json)
     
 install(DIRECTORY ${ARTIFACTS}/${SYS_TARGET_ID}/include
     DESTINATION .
