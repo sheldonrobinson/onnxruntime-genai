@@ -36,7 +36,10 @@ set(ENGINE_ROOT ${SRC_ROOT}/engine)
 # Define the dependency libraries
 
 if(WIN32)
-  set(ONNXRUNTIME_LIB "onnxruntime.dll")
+  if(NOT DEFINED ONNXRUNTIME_LIB)
+	set(ONNXRUNTIME_LIB "onnxruntime.dll")
+  endif()
+  
   set(ONNXRUNTIME_PROVIDERS_CUDA_LIB "onnxruntime_providers_cuda.dll")
   set(ONNXRUNTIME_PROVIDERS_ROCM_LIB "onnxruntime_providers_rocm.dll")
 elseif(APPLE)
