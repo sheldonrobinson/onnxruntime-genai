@@ -31,16 +31,18 @@ target_link_libraries(slm-runner slmengine ort-genai ort httplib::httplib argpar
 
 add_executable(slm-server slm_server.cpp)
 target_link_libraries(slm-server slmengine ort-genai ort httplib::httplib argparse::argparse nlohmann::json)
-    
-install(DIRECTORY ${ARTIFACTS}/${SYS_TARGET_ID}/include
-    DESTINATION .
-    FILES_MATCHING PATTERN "*.h"
-)
 
-install(FILES slm_engine.h DESTINATION include)
-install(FILES input_decoder.h DESTINATION include)
+if (ENABLE_EXAMPLES)
+	install(DIRECTORY ${ARTIFACTS}/${SYS_TARGET_ID}/include
+		DESTINATION .
+		FILES_MATCHING PATTERN "*.h"
+	)
 
-install(TARGETS slmengine DESTINATION bin)
-install(TARGETS slm-runner DESTINATION bin)
-install(TARGETS slm-server DESTINATION bin)
-install(TARGETS unit-test DESTINATION bin)
+	install(FILES slm_engine.h DESTINATION include)
+	install(FILES input_decoder.h DESTINATION include)
+
+	install(TARGETS slmengine DESTINATION bin)
+	install(TARGETS slm-runner DESTINATION bin)
+	install(TARGETS slm-server DESTINATION bin)
+	install(TARGETS unit-test DESTINATION bin)
+endif()

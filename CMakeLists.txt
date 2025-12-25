@@ -291,6 +291,13 @@ if(ENABLE_MODEL_BENCHMARK)
   add_subdirectory("${REPO_ROOT}/benchmark/c")
 endif()
 
+if (ENABLE_EXAMPLES)
+  message("------------------Enablng GenAI C Example------------------")
+  add_subdirectory("${REPO_ROOT}/examples/c")
+  message("------------------Enablng SLM Engine------------------")
+  add_subdirectory("${REPO_ROOT}/examples/c")
+endif()
+
 # Have visual studio put all files into one single folder vs the default split of header files into a separate folder
 source_group(TREE ${GENERATORS_ROOT} FILES ${generator_srcs})
 
