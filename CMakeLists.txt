@@ -295,7 +295,7 @@ if (ENABLE_EXAMPLES)
   message("------------------Enablng GenAI C Example------------------")
   add_subdirectory("${REPO_ROOT}/examples/c")
   message("------------------Enablng SLM Engine------------------")
-  add_subdirectory("${REPO_ROOT}/examples/c")
+  add_subdirectory("${REPO_ROOT}/examples/slm_engine")
 endif()
 
 # Have visual studio put all files into one single folder vs the default split of header files into a separate folder
