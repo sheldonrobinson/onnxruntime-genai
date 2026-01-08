@@ -476,7 +476,7 @@ def _get_windows_build_args(args: argparse.Namespace):
         "-DCMAKE_MODULE_LINKER_FLAGS_INIT=/profile /DYNAMICBASE",
         "-DCMAKE_SHARED_LINKER_FLAGS_INIT=/profile /DYNAMICBASE",
     ]
-    cmake_c_flags = "/EHsc /Qspectre /MP /guard:cf /DWIN32 /D_WINDOWS /DWINAPI_FAMILY=100 /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A000000"
+    cmake_c_flags = "/EHsc /MP /guard:cf /DWIN32 /D_WINDOWS /DWINAPI_FAMILY=100 /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A000000"
     if args.config == "Release":
         cmake_c_flags += " /O2 /Ob2 /DNDEBUG"
     elif args.config == "RelWithDebInfo":
