@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+//
+// Modifications Copyright(C) 2026 Advanced Micro Devices, Inc. All rights reserved.
 
 #include "generators.h"
 #include "sequences.h"
@@ -15,6 +17,7 @@
 #include "qnn/interface.h"
 #include "webgpu/interface.h"
 #include "openvino/interface.h"
+#include "ryzenai/interface.h"
 #include "engine/engine.h"
 
 #if defined(_WIN32)
@@ -94,6 +97,8 @@ void Shutdown() {
   }
 
   GetOrtGlobals().reset();  // Delete now because on process exit is too late
+
+  RyzenAIInterface::Shutdown();
 }
 
 OrtEnv& GetOrtEnv() {
@@ -224,6 +229,8 @@ std::string to_string(DeviceType device_type) {
       return "OpenVINO";
     case DeviceType::NvTensorRtRtx:
       return "NvTensorRtRtx";
+    case DeviceType::RyzenAI:
+      return "RyzenAI";
     default:
       throw std::runtime_error("Unknown device type");
   }
@@ -247,6 +254,8 @@ DeviceInterface* GetDeviceInterface(DeviceType type) {
       return GetQNNInterface();
     case DeviceType::OpenVINO:
       return GetOpenVINOInterface();
+    case DeviceType::RyzenAI:
+      return GetRyzenAIInterface();
   }
 }
 
@@ -348,7 +357,8 @@ void Generator::AppendTokens(cpu_span<const int32_t> input_ids) {
       DeviceType::CUDA,
       DeviceType::WEBGPU,
       DeviceType::OpenVINO,
-      DeviceType::NvTensorRtRtx};
+      DeviceType::NvTensorRtRtx,
+      DeviceType::RyzenAI};
 
   if (search_->GetSequenceLength() != 0 &&
       std::none_of(devices_supporting_continuous_decoding.begin(), devices_supporting_continuous_decoding.end(),
